@@ -2,17 +2,14 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>html,body{margin:0;padding:0}</style>
 <title>Asawari Tajne Portfolio</title>
 <meta name="description" content="Asawari Tajne, front-end web engineer. Responsive React and TypeScript interfaces, interactive components and animation.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300;12..96,500;12..96,800&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
 <style>
-:root{color-scheme:light;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
-body{margin:0;font-size:14px}
-img{max-width:100%}
-
 /* Layout: a studio reel. Hero = name + a live "reflowing layout" canvas. Then a resizable device stage, then five project spreads, each with its own animated diagram of what was built. */
 :root{
   --bg:#F3F4F9; --surface:#FFFFFF; --ink:#12142A; --muted:#575D78; --line:#D9DCE8;
@@ -293,14 +290,49 @@ pre.snip .hl{background:#3A2A1F;color:#FFB38F;display:inline-block;width:100%}
 .r-bar strong{font-family:var(--display);font-weight:500}
 .r-scroll{overflow:auto;background:#fff;padding:12px}
 .r-scroll img{display:block;width:100%;height:auto}
-</style>
-</head>
-<body>
 
+/* Branded content */
+.ads-grid{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);gap:clamp(16px,3vw,28px);align-items:start}
+@media (max-width:900px){.ads-grid{grid-template-columns:1fr}}
+.pp{border:1px solid var(--line);border-radius:16px;background:var(--surface);overflow:hidden;box-shadow:0 24px 48px -30px color-mix(in srgb,var(--ink) 55%,transparent)}
+.pp-label{display:flex;justify-content:space-between;align-items:center;gap:8px;padding:8px 14px;border-bottom:1px solid var(--line);font-family:var(--mono);font-size:var(--t-xs);color:var(--muted)}
+.pp-label b{color:var(--ink);font-weight:500;letter-spacing:.06em;text-transform:uppercase}
+.pp-hero{position:relative;height:clamp(180px,30vw,260px);overflow:hidden;background:#0D3B4C}
+.pp-sky{position:absolute;inset:0;background:linear-gradient(180deg,#0D3B4C 0%,#1F6F7A 55%,#F2B880 100%)}
+.pp-sun{position:absolute;width:90px;height:90px;border-radius:50%;background:#FFD08A;left:62%;top:58%;box-shadow:0 0 60px 20px rgba(255,208,138,.45)}
+.pp-hill{position:absolute;left:-10%;right:-10%;bottom:-40px;height:140px;border-radius:50% 50% 0 0;background:#123B2E}
+.pp-hill.h2{bottom:-70px;height:150px;left:30%;right:-30%;background:#0B2A20}
+.pp-title{position:absolute;left:18px;bottom:18px;right:18px;color:#fff;font-family:var(--display);font-weight:800;font-size:clamp(1.3rem,3.4vw,2rem);line-height:1.02;letter-spacing:-.02em}
+.pp-title span{display:block;overflow:hidden}.pp-title span i{display:inline-block;font-style:normal}
+.pp-body{padding:16px 18px;display:grid;gap:12px}
+.pp-body p{color:var(--muted);font-size:.92rem}
+.pp-stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+.pp-stats div{border:1px solid var(--line);border-radius:10px;padding:10px;display:grid;gap:2px}
+.pp-stats b{font-family:var(--display);font-size:1.4rem;font-weight:800;color:var(--accent);font-variant-numeric:tabular-nums}
+.pp-stats span{font-size:.72rem;color:var(--muted)}
+.ad-col{display:grid;gap:14px;min-width:0}
+.ad-wrap{display:grid;gap:6px;justify-items:center}
+.ad-wrap .cap{font-family:var(--mono);font-size:var(--t-xs);color:var(--muted)}
+.ad{position:relative;overflow:hidden;border:1px solid var(--line);background:#0D3B4C;color:#fff;font-family:var(--body)}
+.ad.mrec{width:300px;max-width:100%;aspect-ratio:300/250}
+.ad.lb{width:100%;max-width:728px;height:90px;container-type:inline-size}
+.ad .bg{position:absolute;inset:0;background:linear-gradient(135deg,#0D3B4C,#1F6F7A 60%,#F2B880)}
+.ad .brand{position:absolute;top:10px;left:12px;font-family:var(--mono);font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;opacity:.85}
+.ad .h{position:absolute;left:12px;right:12px;top:34%;font-family:var(--display);font-weight:800;font-size:1.35rem;line-height:1.02}
+.ad .cta{position:absolute;left:12px;bottom:12px;background:#FFD08A;color:#0D3B4C;font:600 .78rem var(--body);padding:7px 12px;border-radius:999px}
+.ad .tent{position:absolute;right:16px;bottom:14px;width:0;height:0;border-left:34px solid transparent;border-right:34px solid transparent;border-bottom:44px solid #FFD08A}
+.ad.lb .brand{top:8px}.ad.lb .h{top:26px;font-size:1.05rem;right:150px}.ad.lb .cta{left:auto;right:12px;bottom:auto;top:50%;transform:translateY(-50%)}
+.ad.lb .tent{display:none}
+@media (max-width:520px){.ad.lb{max-width:320px;height:50px}}
+@container (max-width:420px){.ad.lb .h{font-size:.85rem;right:110px;top:10px}.ad.lb .brand{display:none}.ad.lb .cta{padding:5px 10px;font-size:.7rem}}
+.ad-ctrl{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.ad-ctrl .readout{font-family:var(--mono);font-size:var(--t-xs);color:var(--muted)}
+.ads-note{font-size:var(--t-xs);color:var(--muted)}
+</style>
 
 <nav class="pad"><div class="wrap">
   <a class="mark" href="#top"><i></i>Asawari Tajne</a>
-  <ul><li><a href="#responsive">Responsive</a></li><li><a href="#work">Work</a></li><li><a href="#approach">Approach</a></li><li><a href="#contact">Contact</a></li><li><a href="#resume" data-resume>Resume</a></li></ul>
+  <ul><li><a href="#responsive">Responsive</a></li><li><a href="#work">Work</a></li><li><a href="#ads">Ads</a></li><li><a href="#approach">Approach</a></li><li><a href="#contact">Contact</a></li><li><a href="#resume" data-resume>Resume</a></li></ul>
 </div></nav>
 
 <header id="top" class="pad"><div class="wrap hero">
@@ -314,7 +346,7 @@ pre.snip .hl{background:#3A2A1F;color:#FFB38F;display:inline-block;width:100%}
       <a class="btn" href="https://github.com/asawaritajne" target="_blank" rel="noopener">GitHub</a>
       <a class="btn" href="https://linkedin.com/in/asawaritajne" target="_blank" rel="noopener">LinkedIn</a>
     </div>
-    <div class="facts"><span>React · TypeScript · CSS/SASS · GSAP</span><span>Dallas, TX → open to NYC</span></div>
+    <div class="facts"><span>React · TypeScript · CSS3 · GSAP</span><span>Dallas, TX → open to NYC</span></div>
   </div>
   <figure class="stage-card" style="margin:0" aria-label="Animated layout blocks reflowing between desktop, tablet and phone column counts">
     <div class="bar"><div class="dots"><i></i><i></i><i></i></div><span>layout.tsx</span></div>
@@ -324,8 +356,8 @@ pre.snip .hl{background:#3A2A1F;color:#FFB38F;display:inline-block;width:100%}
 </div></header>
 
 <div class="marquee" aria-hidden="true"><div class="track">
-  <span>React</span><span>TypeScript</span><span>Next.js</span><span>HTML5</span><span>CSS3 · Sass</span><span>GSAP</span><span>Responsive UI</span><span>Figma to code</span><span>Jest</span><span>Git &amp; GitHub</span><span>Node.js</span>
-  <span>React</span><span>TypeScript</span><span>Next.js</span><span>HTML5</span><span>CSS3 · Sass</span><span>GSAP</span><span>Responsive UI</span><span>Figma to code</span><span>Jest</span><span>Git &amp; GitHub</span><span>Node.js</span>
+  <span>React</span><span>TypeScript</span><span>Next.js</span><span>HTML5</span><span>CSS3</span><span>GSAP</span><span>Responsive UI</span><span>Figma to code</span><span>Google Ad Manager</span><span>Jira</span><span>Git &amp; GitHub</span><span>Node.js</span>
+  <span>React</span><span>TypeScript</span><span>Next.js</span><span>HTML5</span><span>CSS3</span><span>GSAP</span><span>Responsive UI</span><span>Figma to code</span><span>Google Ad Manager</span><span>Jira</span><span>Git &amp; GitHub</span><span>Node.js</span>
 </div></div>
 
 <main>
@@ -435,7 +467,7 @@ pre.snip .hl{background:#3A2A1F;color:#FFB38F;display:inline-block;width:100%}
         <p>A guided request flow used by 200+ people, built in a codebase shared with other teams.</p>
         <ul>
           <li>8 reusable React/TypeScript components powering 10+ screens, with validation at every step.</li>
-          <li>Profiled slow MySQL queries and added indexes: API responses went from 350 ms to 240 ms.</li>
+          <li>Tuned slow MySQL queries and added indexes: API responses went from 350 ms to 240 ms.</li>
           <li>Reviewed code for a team of 6, mentored 2 new hires, raised Jest coverage from 45% to 75%.</li>
           <li>Traced 30+ production incidents to root cause, cutting repeat issues by 40%.</li>
         </ul>
@@ -481,15 +513,15 @@ pre.snip .hl{background:#3A2A1F;color:#FFB38F;display:inline-block;width:100%}
       <div class="copy">
         <span class="where">Hatch Product Development · internship · 2026</span>
         <h3>Resource-planning dashboards</h3>
-        <p>Leadership couldn't see team capacity across projects. I worked with project managers to turn that into small, tested tasks and shipped a planning module.</p>
+        <p>The team couldn't see capacity across projects in one place. I wrote the design doc and API contracts, then shipped a real-time planning module.</p>
         <ul>
-          <li>6 production features in React and TypeScript, built from Figma for 50+ users.</li>
-          <li>8 Node.js/Express APIs connected end to end into live dashboards.</li>
-          <li>API contracts between new screens and existing services, including every error state.</li>
-          <li>Claude Code and Copilot for speed, with every AI-written change reviewed and tested.</li>
+          <li>6 accessible features in React and TypeScript for 50+ users, with ARIA labels and keyboard navigation.</li>
+          <li>8 Node.js/Express REST endpoints feeding live dashboards over GraphQL and WebSockets.</li>
+          <li>Animated interactive visual elements with GSAP and CSS transitions, and integrated Google Ad Manager ad units into responsive layouts.</li>
+          <li>Tracked every feature and bug fix in Jira; used Claude Code and Cursor with every AI-written change reviewed and tested.</li>
         </ul>
         <div class="big-stats"><div><b>~5 hrs</b><span>of manual reporting saved weekly</span></div><div><b>20+</b><span>projects in one view</span></div></div>
-        <ul class="chips"><li>React</li><li>TypeScript</li><li>Node.js</li><li>Express</li><li>Figma</li></ul>
+        <ul class="chips"><li>React</li><li>TypeScript</li><li>GSAP</li><li>Google Ad Manager</li><li>Node.js</li><li>Jira</li></ul>
       </div>
       <div class="screen" id="hp">
         <div class="top"><span class="dots"><i></i><i></i><i></i></span><span class="url">/planning/capacity</span><span class="rec">recreation · sample data</span></div>
@@ -516,14 +548,14 @@ pre.snip .hl{background:#3A2A1F;color:#FFB38F;display:inline-block;width:100%}
       <div class="copy">
         <span class="where">Personal project · <a href="https://github.com/asawaritajne" target="_blank" rel="noopener">GitHub</a></span>
         <h3>Codebase Q&amp;A assistant</h3>
-        <p>Ask a plain-English question about a codebase and get an answer with line-level citations, so every answer can be checked against the source.</p>
+        <p>Ask a plain-English question about a codebase and get an answer with cited sources, so every answer can be checked against the code.</p>
         <ul>
           <li>Indexed 13 repositories into 15,290 code chunks, with 91 ms median retrieval.</li>
           <li>React interface that shows a citation with every answer.</li>
           <li>Built a 48-question test set and traced wrong answers to how code was chunked.</li>
         </ul>
         <div class="big-stats"><div><b id="acc">97.9%</b><span>answer accuracy, up from 89.6%</span></div><div><b>91 ms</b><span>median retrieval</span></div></div>
-        <ul class="chips"><li>TypeScript</li><li>React</li><li>Node.js</li><li>MongoDB Atlas</li><li>Gemini API</li></ul>
+        <ul class="chips"><li>React</li><li>Node.js</li><li>MongoDB Atlas</li><li>Gemini API</li><li>GitHub Actions</li></ul>
       </div>
       <div class="screen dark-screen" id="qa">
         <div class="top"><span class="dots"><i></i><i></i><i></i></span><span class="url">codebase-qa</span><span class="rec">recreation · sample repo</span></div>
@@ -552,9 +584,10 @@ pre.snip .hl{background:#3A2A1F;color:#FFB38F;display:inline-block;width:100%}
         <ul>
           <li>Clerk authentication and server-side API routes keep user data off the client.</li>
           <li>PostgreSQL for user records, Cloudinary for media.</li>
+          <li>Responsive Tailwind CSS dashboard, live on Vercel for real users.</li>
         </ul>
         <div class="big-stats"><div><b>5</b><span>AI tools in one app</span></div></div>
-        <ul class="chips"><li>Next.js</li><li>TypeScript</li><li>PostgreSQL</li><li>Clerk</li><li>Vercel</li></ul>
+        <ul class="chips"><li>Next.js</li><li>Tailwind CSS</li><li>PostgreSQL</li><li>Clerk</li><li>Vercel</li></ul>
       </div>
       <div class="screen" id="ss">
         <div class="top"><span class="dots"><i></i><i></i><i></i></span><span class="url">/dashboard/resume-review</span><span class="rec">recreation</span></div>
@@ -574,13 +607,57 @@ pre.snip .hl{background:#3A2A1F;color:#FFB38F;display:inline-block;width:100%}
   </div>
 </div></section>
 
+<section id="ads" class="pad" style="padding-top:0"><div class="wrap">
+  <div class="head">
+    <span class="eyebrow">Branded content · concept demo</span>
+    <h2>A paid post and its ad units, animated with GSAP</h2>
+    <p>A sample sponsored story with matching display ads, built the way a branded-content studio would: one modular template, standard ad sizes, a GSAP timeline, and a reduced-motion fallback. The sponsor is fictional.</p>
+  </div>
+  <div class="ads-grid">
+    <article class="pp" id="pp" aria-label="Sample paid post">
+      <div class="pp-label"><b>Paid post</b><span>Presented by Tidewater Outdoor Co. (fictional)</span></div>
+      <div class="pp-hero" aria-hidden="true">
+        <div class="pp-sky"></div><div class="pp-sun"></div><div class="pp-hill"></div><div class="pp-hill h2"></div>
+        <div class="pp-title"><span><i>Why more families</i></span><span><i>are camping close to home</i></span></div>
+      </div>
+      <div class="pp-body">
+        <p>Scroll-triggered story template: the headline reveals line by line, the scene settles into place, and the numbers count up as the reader arrives.</p>
+        <div class="pp-stats">
+          <div><b data-to="62">0</b><span>% plan a trip within 2 hours of home (sample data)</span></div>
+          <div><b data-to="3">0</b><span>nights is the typical stay (sample data)</span></div>
+          <div><b data-to="41">0</b><span>% are first-time campers (sample data)</span></div>
+        </div>
+      </div>
+    </article>
+    <div class="ad-col">
+      <div class="ad-wrap">
+        <div class="ad mrec" id="ad-mrec" role="img" aria-label="Sample 300 by 250 display ad: Find your nearest trail. Plan a trip.">
+          <div class="bg"></div><span class="brand">Tidewater Outdoor</span><span class="h">Find your nearest trail.</span><span class="tent"></span><span class="cta">Plan a trip</span>
+        </div>
+        <span class="cap">300 × 250 medium rectangle</span>
+      </div>
+      <div class="ad-wrap">
+        <div class="ad lb" id="ad-lb" role="img" aria-label="Sample leaderboard display ad that resizes for mobile">
+          <div class="bg"></div><span class="brand">Tidewater Outdoor</span><span class="h">Weekend trips start closer than you think.</span><span class="cta">Plan a trip</span>
+        </div>
+        <span class="cap" id="lb-cap">728 × 90 leaderboard · resizes to 320 × 50 on phones</span>
+      </div>
+      <div class="ad-ctrl">
+        <button type="button" class="btn small" id="ad-replay">Replay animation</button>
+        <button type="button" class="btn small" id="ad-size" aria-pressed="false">Show phone size</button>
+      </div>
+      <p class="ads-note">Ad slots use standard IAB sizes, the kind defined in Google Ad Manager, and each creative is built to reflow when its slot changes size.</p>
+    </div>
+  </div>
+</div></section>
+
 <section id="approach" class="pad" style="padding-top:0"><div class="wrap">
   <div class="head"><span class="eyebrow">How I work</span><h2>From mockup to merged</h2></div>
   <div class="approach">
     <div><svg viewBox="0 0 44 44" aria-hidden="true"><rect x="4" y="8" width="16" height="28" rx="3" class="f-soft"/><rect x="24" y="8" width="16" height="12" rx="3" class="f-accent"/><rect x="24" y="24" width="16" height="12" rx="3" class="f-warm"/></svg><h3>Design to code</h3><p>Built from Figma with designers in the loop, split into reusable components, checked at every breakpoint.</p></div>
     <div><svg viewBox="0 0 44 44" aria-hidden="true"><path d="M4 34 C 14 34, 14 10, 24 10 S 34 22, 40 22" fill="none" class="s-accent" stroke-width="3"/><circle cx="40" cy="22" r="4" class="f-warm"/></svg><h3>Motion with purpose</h3><p>CSS transitions and GSAP where movement helps people follow a change, with a reduced-motion fallback.</p></div>
     <div><svg viewBox="0 0 44 44" aria-hidden="true"><circle cx="12" cy="10" r="4" class="f-accent"/><circle cx="12" cy="34" r="4" class="f-accent"/><circle cx="32" cy="20" r="4" class="f-warm"/><path d="M12 14 V30 M12 22 C 20 22, 26 20, 28 20" fill="none" class="s-ink" stroke-width="2"/></svg><h3>Reviews and tickets</h3><p>Small pull requests, clear Jira tickets, Git branching the team can follow. Reviewed code for a team of six.</p></div>
-    <div><svg viewBox="0 0 44 44" aria-hidden="true"><rect x="6" y="8" width="32" height="24" rx="4" class="f-soft"/><path d="M14 20 l5 5 l10 -10" fill="none" class="s-accent" stroke-width="3"/><rect x="14" y="34" width="16" height="4" rx="2" class="f-warm"/></svg><h3>AI tools, checked</h3><p>Claude Code and Copilot to move faster, then I read, question and test every change before it ships.</p></div>
+    <div><svg viewBox="0 0 44 44" aria-hidden="true"><rect x="6" y="8" width="32" height="24" rx="4" class="f-soft"/><path d="M14 20 l5 5 l10 -10" fill="none" class="s-accent" stroke-width="3"/><rect x="14" y="34" width="16" height="4" rx="2" class="f-warm"/></svg><h3>AI tools, checked</h3><p>Claude Code and Cursor to move faster, then I read, question and test every change before it ships.</p></div>
   </div>
 </div></section>
 
@@ -761,6 +838,30 @@ pre.snip .hl{background:#3A2A1F;color:#FFB38F;display:inline-block;width:100%}
     function sel(){var r=document.createRange();r.selectNodeContents(el);var s=getSelection();s.removeAllRanges();s.addRange(r);btn.textContent='Press Ctrl/Cmd+C'}
     try{navigator.clipboard.writeText(el.textContent).then(function(){btn.textContent='Copied';setTimeout(function(){btn.textContent='Copy email'},1600)},sel)}catch(e){sel()}});
 
+
+  /* ---------- Branded content: paid post + ad units ---------- */
+  var ppNums=$$('#pp [data-to]');
+  function ppFinal(){ppNums.forEach(function(n){n.textContent=n.dataset.to})}
+  function playAds(){
+    if(!hasG||reduce){ppFinal();return}
+    var tl=gsap.timeline();
+    tl.fromTo('#pp .pp-title i',{yPercent:110},{yPercent:0,duration:.7,ease:'power4.out',stagger:.12})
+      .fromTo('#pp .pp-sun',{y:60,opacity:0},{y:0,opacity:1,duration:1,ease:'power2.out'},0)
+      .fromTo('#pp .pp-hill',{y:40},{y:0,duration:.9,ease:'power3.out',stagger:.1},0);
+    ppNums.forEach(function(n){var o={v:0};tl.to(o,{v:+n.dataset.to,duration:1.1,ease:'power2.out',onUpdate:function(){n.textContent=Math.round(o.v)}},.4)});
+    ['#ad-mrec','#ad-lb'].forEach(function(id,k){
+      tl.fromTo(id+' .h',{x:-24,opacity:0},{x:0,opacity:1,duration:.55,ease:'power3.out'},.2+k*.15)
+        .fromTo(id+' .cta',{scale:.6,opacity:0},{scale:1,opacity:1,duration:.45,ease:'back.out(2.2)'},.6+k*.15);
+    });
+    tl.fromTo('#ad-mrec .tent',{y:30,opacity:0},{y:0,opacity:1,duration:.6,ease:'power2.out'},.4)
+      .to('#ad-mrec .cta, #ad-lb .cta',{scale:1.06,duration:.35,yoyo:true,repeat:1,ease:'sine.inOut'},1.4);
+  }
+  $('#ad-replay').addEventListener('click',playAds);
+  $('#ad-size').addEventListener('click',function(){var on=this.getAttribute('aria-pressed')!=='true',lb=$('#ad-lb');
+    this.setAttribute('aria-pressed',on?'true':'false');this.textContent=on?'Show desktop size':'Show phone size';
+    lb.style.maxWidth=on?'320px':'728px';lb.style.height=on?'50px':'90px';
+    $('#lb-cap').textContent=on?'320 × 50 mobile banner':'728 × 90 leaderboard · resizes to 320 × 50 on phones';});
+  if(hasG&&!reduce&&window.ScrollTrigger){gsap.registerPlugin(ScrollTrigger);ScrollTrigger.create({trigger:'#ads',start:'top 75%',once:true,onEnter:playAds})}else{ppFinal()}
   if(!hasG||reduce) return;
   gsap.from('.hero h1 .line span',{yPercent:105,duration:1,ease:'power4.out',stagger:.12});
   gsap.from('.hero .tag, .hero .row, .hero .facts, .hero-text .eyebrow',{y:16,duration:.7,ease:'power3.out',stagger:.08,delay:.35});
@@ -774,5 +875,4 @@ pre.snip .hl{background:#3A2A1F;color:#FFB38F;display:inline-block;width:100%}
 })();
 </script>
 
-</body>
 </html>
